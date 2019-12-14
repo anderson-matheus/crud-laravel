@@ -4,7 +4,7 @@ namespace App\Http\Requests\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,16 +14,19 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|min:3|max:255',
             'lastname' => 'required|min:3|max:255',
-            'username' => 'required|min:3|max:255|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
+            'username' => 'required|min:3|max:255|unique:users,username,' . $this->user_id,
+            'email' => 'required|email|max:255|unique:users,email,' . $this->user_id,
         ];
     }
 
     public function messages()
     {
         return [
+            'user_id.required' => 'Digite o id do usuário',
+            'user_id.exists' => 'O usuário não existe',
             'name.required' => 'Digite um nome',
             'name.min' => 'Digite um nome com no mínimo 3 caracteres',
             'name.max' => 'Digite um nome com no máximo 255 caracteres',

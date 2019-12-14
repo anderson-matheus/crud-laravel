@@ -29,7 +29,16 @@ class UserRepository implements UserInterface
 
     public function update(array $data)
     {
-        dd('update');
+        $userId = $data['user_id'];
+        unset($data['user_id']);
+        $user = $this->user::find($userId)->update($data);
+        return $user;
+    }
+
+    public function find(int $id)
+    {
+        $user = $this->user::find($id);
+        return $user;
     }
 
     public function delete(int $userId)
