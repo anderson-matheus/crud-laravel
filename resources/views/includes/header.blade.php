@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
     <a
       class="navbar-brand"
-      href="{{ route('users.index') }}"
+      href="{{ route('dashboard.index') }}"
       title="{{ config('app.name') }}">
       <img
         src={{ asset('assets/images/logo.svg')}}

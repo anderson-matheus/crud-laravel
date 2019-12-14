@@ -49,7 +49,8 @@
                   <a
                     href="{{ route('users.delete', ['id' => $user->id]) }}"
                     class="btn btn-danger"
-                    title="remover usuário">
+                    title="remover usuário"
+                    onclick="return confirm('Tem certeza que deseja remover o usuário?')">
                       <i class="fas fa-user-minus"></i>
                   </a>
                 </td>

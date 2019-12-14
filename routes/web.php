@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'DashboardController@index')->name('dashboard.index');
 
 Route::group(['prefix' => 'users'], function() {
   Route::get('/', 'UserController@index')->name('users.index');

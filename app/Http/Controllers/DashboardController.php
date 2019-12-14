@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Contracts\UserInterface;
 
 class DashboardController extends Controller
 {
-    public function index()
+    private $user;
+
+    public function __construct(UserInterface $user)
     {
-      return view('pages.index');
+        $this->user = $user;
+    }
+
+    public function index(Request $request)
+    {
+        $users = $this->user->all($request->all());
+        return view('pages.index')->with(['users' => $users]);
     }
 }
