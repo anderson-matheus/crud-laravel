@@ -17,7 +17,8 @@
           <th scope="col">Sobrenome</th>
           <th scope="col">Username</th>
           <th scope="col">E-mail</th>
-          <th scope="col">Última atualização</th>
+          <th scope="col">Data de criação</th>
+          <th scope="col">Data da última atualização</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
@@ -36,17 +37,18 @@
                 <td>{{ $user->lastname }}</td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td>
                   <a
                     href="{{ route('users.edit', ['id' => $user->id]) }}"
-                    class="btn btn-primary mb-2"
+                    class="btn btn-primary"
                     title="editar usuário">
                       <i class="fas fa-user-edit"></i>
                   </a>
                   <a
                     href="{{ route('users.delete', ['id' => $user->id]) }}"
-                    class="btn btn-danger mb-2"
+                    class="btn btn-danger"
                     title="remover usuário">
                       <i class="fas fa-user-minus"></i>
                   </a>

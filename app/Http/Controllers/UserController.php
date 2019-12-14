@@ -54,6 +54,15 @@ class UserController extends Controller
 
     public function delete($id)
     {
+        $user = $this->user->find($id);
+
+        if (is_null($user)) {
+            return redirect()->route('users.index')
+                ->with('error', 'Usuário selecionado não existe');
+        }
+
         $user = $this->user->delete($id);
+        return redirect()->route('users.index')
+            ->with('success','Usuário ' . $user->name . ' foi atualizado com sucesso');
     }
 }
