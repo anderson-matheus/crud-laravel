@@ -13,40 +13,49 @@
       <thead class="thead-dark text-center">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nome completo</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sobrenome</th>
+          <th scope="col">Username</th>
           <th scope="col">E-mail</th>
-          <th scope="col">Nome de usuário</th>
+          <th scope="col">Última atualização</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody class="text-center">
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <a
-              href="mailto:email@email.com"
-              title="email@email.com">
-              email@email.com
-            </a>
-          </td>
-          <td>Otto</td>
-          <td>
-            <a
-              href="{{ route('users.edit', ['id' => 1]) }}"
-              class="btn btn-primary mb-2"
-              title="editar usuário">
-                <i class="fas fa-user-edit"></i>
-            </a>
-            <a
-              href="{{ route('users.delete', ['id' => 1]) }}"
-              class="btn btn-danger mb-2"
-              title="remover usuário">
-                <i class="fas fa-user-minus"></i>
-            </a>
-          </td>
-        <tr>
+          @if ($users->count() == 0)
+            <div class="alert alert-warning" role="alert">
+                Não existe(m) mais usuário(s)
+            </div>
+          @endif
+
+          @foreach ($users as $user)
+            <tr>
+                <th scope="row">{{ $user->id }}</th>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->lastname }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->updated_at }}</td>
+                <td>
+                  <a
+                    href="{{ route('users.edit', ['id' => $user->id]) }}"
+                    class="btn btn-primary mb-2"
+                    title="editar usuário">
+                      <i class="fas fa-user-edit"></i>
+                  </a>
+                  <a
+                    href="{{ route('users.delete', ['id' => $user->id]) }}"
+                    class="btn btn-danger mb-2"
+                    title="remover usuário">
+                      <i class="fas fa-user-minus"></i>
+                  </a>
+                </td>
+            </tr>
+          @endforeach
       </tbody>
     </table>
+    <div class="float-right">
+        {{ $users->links() }}
+    </div>
   </div>
 @stop
