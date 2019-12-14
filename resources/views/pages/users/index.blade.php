@@ -24,6 +24,7 @@
       <tbody class="text-center">
           @if ($users->count() == 0)
             <div class="alert alert-warning" role="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
                 Não existe(m) mais usuário(s)
             </div>
           @endif

@@ -16,13 +16,15 @@ class UserRepository implements UserInterface
 
     public function all(array $data)
     {
-        $users = $this->user::paginate(10);
+        $users = $this->user::orderBy('created_at', 'desc')
+            ->paginate(10);
         return $users;
     }
 
     public function store(array $data)
     {
-        dd('store');
+        $user = $this->user::create($data);
+        return $user;
     }
 
     public function update(array $data)

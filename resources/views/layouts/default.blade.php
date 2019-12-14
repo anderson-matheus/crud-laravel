@@ -9,6 +9,7 @@
     </header>
 
     <div class="container-fluid">
+        @include('includes.flash-message')
         @yield('content')
     </div>
 

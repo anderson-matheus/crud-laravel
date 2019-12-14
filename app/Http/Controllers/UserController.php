@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Users\StoreUserRequest;
 use App\Repositories\Contracts\UserInterface;
 
 class UserController extends Controller
@@ -26,9 +27,11 @@ class UserController extends Controller
       return view('pages.users.create');
   }
 
-  public function store(Request $request)
+  public function store(StoreUserRequest $request)
   {
     $user = $this->user->store($request->all());
+    return redirect()->route('users.index')
+        ->with('success','Usuário ' . $user->name . ' foi criado com sucesso');
   }
 
   public function edit($id)
